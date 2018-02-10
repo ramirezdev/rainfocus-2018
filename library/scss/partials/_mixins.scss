@@ -70,4 +70,11 @@ probably best not to use it. I mean, were you going to anyway? */
 	box-sizing:         $type;
 }
 
+@mixin rainfocus-button($width, $height) {
+	width: $width;
+	height: $height;
+	opacity: 0.9;
+	border-radius: 5.5px;
+	background-color: $rainfocus-red;
+}
 
