@@ -115,6 +115,15 @@ jQuery(document).ready(function($) {
    * You can remove this if you don't need it
   */
   loadGravatars();
+  
+  $(window).scroll(function() {
+    var top = $('.block-attendee').height();
+    $('#sub-nav-row').css('top', top + 'px');
+  });
+
+  setTimeout(function(){
+    $('#sub-nav-row').css('top', '1000px');
+  }, 500);
 
 
 }); /* end of as page load scripts */

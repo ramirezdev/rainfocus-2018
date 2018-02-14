@@ -1,14 +1,14 @@
-<footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+<footer class="footer wrap cf" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
 
-				<div id="inner-footer" class="wrap cf">
+				<div id="inner-footer" class="">
 
 					<?php
 
-					// $bottom_page_query = new WP_Query( 'page_id=58' );
-					// while ( $bottom_page_query->have_posts() ) : $bottom_page_query->the_post();
-				    // 	the_content();
-					// endwhile;
-					// wp_reset_postdata();
+					$bottom_page_query = new WP_Query( 'page_id=57' );
+					while ( $bottom_page_query->have_posts() ) : $bottom_page_query->the_post();
+				    	the_content();
+					endwhile;
+					wp_reset_postdata();
 
 					?>
 

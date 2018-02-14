@@ -16,11 +16,11 @@ GENERAL STYLES
 *********************/
 
 body {
-	font-family: $lato;
+	font-family: $montserrat;
 	font-size: 100%;
 	line-height: 1.5;
 	color: $text-color;
-	background-color: $gray;
+	background-color: $black;
   	-webkit-font-smoothing: antialiased;
   	-moz-osx-font-smoothing: grayscale;
 }
@@ -109,60 +109,94 @@ H1, H2, H3, H4, H5 STYLES
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 	text-rendering: optimizelegibility;
-	font-weight: 500;
-	/*
-	if you're going to use webfonts, be sure to check your weights
-	http://css-tricks.com/watch-your-font-weight/
-	*/
-
-	/* removing text decoration from all headline links */
-	a {
-		text-decoration: none;
-	}
 }
 
-h1, .h1 {
-	font-size: 2.5em;
-	line-height: 1.333em;
-}
-
-h2, .h2 {
-	font-size: 1.75em;
-	line-height: 1.4em;
-	margin-bottom: 0.375em;
-}
-
-h3, .h3 {
-	font-size: 1.125em;
-}
-
-h4, .h4 {
-	font-size: 1.1em;
-	font-weight: 700;
-}
-
-h5, .h5 {
-	font-size: 0.846em;
-	line-height: 2.09em;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-}
+h2 {
+	font-family: $montserrat;
+	font-size: 18px;
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.25;
+	letter-spacing: normal;
+	text-align: left;
+	color: $white;
+  }
+  
+  h4 {
+	font-family: $montserrat;
+	font-size: 12px;
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.25;
+	letter-spacing: normal;
+	text-align: left;
+	color: $white;
+  }
+  
+  h3 {
+	font-family : $montserrat;
+	font-size: 9px;
+	font-weight : 500;
+	font-style : normal;
+	font-stretch: normal;
+	line-height: 1.67;
+	letter-spacing: 0.5px;
+	text-align: center;
+	color: $white;
+  }
+  
+  h6 {
+	font-family: $gibson;
+	font-size: 7px;
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.43;
+	letter-spacing: normal;
+	text-align: left;
+	color: $white;
+  }
+  
+  h5 {
+	font-family: $montserrat;
+	font-size: 7px;
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 2.57;
+	letter-spacing: normal;
+	text-align: left;
+	color: $gray;
+  }
 
 /*********************
 HEADER STYLES
 *********************/
 
 .header {
-	background-color: $black;
+	position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+	max-width: 1440px;
+	padding: 25px 130px;
+
+	.logo {
+		width: 116px;
+		display: inline-block;
+		a {
+			img {
+				width: 116px;
+			}
+		}
+		
+	}
+	
 }
 
-	#logo {
-		margin: 0.75em 0;
-
-		a {
-			color: $white;
-		}
-	}
 
 /*********************
 NAVIGATION STYLES
@@ -179,21 +213,19 @@ and more scalable.
 .nav {
 	border-bottom: 0;
 	margin: 0;
-
 	li {
-
+		display: inline-block;
+		margin: 0 35px;
+		&:first-child, &:last-child{
+			margin-left: 150px;
+		}
 		a {
 			display: block;
 			color: $white;
 			text-decoration: none;
-			padding: 0.75em;
-
-			/*
-			remember this is for mobile ONLY, so there's no need
-			to even declare hover styles here, you can do it in
-			the style.scss file where it's relevant. We want to
-			keep this file as small as possible!
-			*/
+			padding: 0;
+			font-size: 16px;
+			font-weight: bold;
 			&:hover, &:focus {
 
 			}
@@ -246,36 +278,50 @@ and more scalable.
 
 } /* end .nav */
 
+nav {
+	display: inline-block !important;
+}
 
 /*********************
 POSTS & CONTENT STYLES
 *********************/
 
 #content {
-	margin-top: 1.5em;
+	.about-you-slide{
+		margin-bottom: 0;
+	}
+	.no-margin-bottom {
+		margin-bottom: 0;
+	}
+	#sub-nav-row {
+		position: absolute !important;
+		width: 100% !important;
+		left: 0 !important;
+		top: 1000px;
+		z-index: 2;
+		margin: 0;
+		padding: 7px 0;
+		background-color: rgba(0, 0, 0, 0.1);
+		
+		.wpb_content_element { 
+			margin: 0 
+		};
+		.about-you-sub-nav {
+			margin: 0 auto;
+			padding: 0;
+			max-width: 880px;
+			li {
+				display: inline-block;
+				margin: 0 32px;
+				font-size: 14px;
+				color: $white;
+				font-weight: 500;
+			}
+		}
+	}
 }
 
-		.hentry {
-			background-color: $white;
-			border-radius: 3px;
-			margin-bottom: 1.5em;
-			border: 1px solid $border-color;
-
-			header {
-				border-bottom: 1px solid $light-gray;
-				padding: 1.5em;
-			}
-
-			footer {
-				padding: 1.5em;
-				border-top: 1px solid $light-gray;
-
-				p {
-					margin: 0;
-				}
-			}
-
-		} /* end .hentry */
+		
 
 		.single-title,
 		.page-title,
@@ -312,129 +358,6 @@ POSTS & CONTENT STYLES
 
 		/* entry content */
 		.entry-content {
-			padding: 1.5em 1.5em 0;
-
-			p {
-				margin: 0 0 1.5em;
-			}
-
-
-			ul, ol, table, dl {}
-
-			ul, ol {
-
-				li {}
-
-			}
-
-			ul {
-
-				li {}
-
-			}
-
-			ol {
-
-				li {}
-
-			}
-
-			table {
-				width: 100%;
-				border: 1px solid $gray;
-				margin-bottom: 1.5em;
-
-				caption {
-					margin: 0 0 7px;
-					font-size: 0.75em;
-					color: $meta-gray;
-					text-transform: uppercase;
-					letter-spacing: 1px;
-				}
-			}
-
-			tr {
-				border-bottom: 1px solid $gray;
-
-				&:nth-child(even) {
-					background-color: $light-gray;
-				}
-			}
-
-			td {
-				padding: 7px;
-				border-right: 1px solid $gray;
-
-				&:last-child {
-					border-right: 0;
-				}
-			}
-
-			th {
-				background-color: $light-gray;
-				border-bottom: 1px solid $gray;
-				border-right: 1px solid $gray;
-
-				&:last-child {
-					border-right: 0;
-				}
-			}
-
-			blockquote {
-				margin: 0 0 1.5em 0.75em;
-				padding: 0 0 0 0.75em;
-				border-left: 3px solid $blue;
-				font-style: italic;
-				color: $meta-gray;
-
-				&:before {}
-
-			}
-
-			dl {}
-
-			dt {}
-
-			dd {
-				margin-left: 0;
-				font-size: 0.9em;
-				color: #787878;
-				margin-bottom: 1.5em;
-			}
-
-			img {
-				margin: 0 0 1.5em 0;
-				max-width: 100%;
-				height: auto;
-			}
-
-			/*
-			image alignment on a screen this size may be
-			a bit difficult. It's set to start aligning
-			and floating images at the next breakpoint,
-			but it's up to you. Feel free to change it up.
-			*/
-			.alignleft, img.alignleft {}
-			.alignright, img.alignright {}
-			.aligncenter, img.aligncenter {}
-
-			.size-auto,
-			.size-full,
-			.size-large,
-			.size-medium,
-			.size-thumbnail {
-				max-width: 100%;
-				height: auto;
-			}
-
-			pre {
-				background: $black;
-				color: $light-gray;
-				font-size: 0.9em;
-				padding: 1.5em;
-				margin: 0 0 1.5em;
-				border-radius: 3px;
-			}
 
 		} /* end .entry-content */
 
@@ -862,8 +785,39 @@ FOOTER STYLES
 
 .footer {
 	clear: both;
-	background-color: $black;
-	color: $light-gray;
+	background-color: $light-black;
+	color: $white;
+	padding: 80px 0 25px 0;
+	
+	#inner-footer{
+		.footer-links-wrapper {
+			h4{
+				font-size: 12px;
+				font-weight: bold;
+			}
+			ul{
+				padding: 1px 0;
+				li{
+					font-size: 12px;
+					color: $disabled-gray;
+					margin: 25px 0;
+				}
+			}
+		}
+		.social-media-icon {
+			display: block;
+			margin: 8px auto;
+		}
+		.footer-separator {
+			opacity: .5;
+		}
+		#footer-tag-line {
+			font-size: 14px;
+			color: $disabled-gray;
+			position: relative;
+			top: 27px;
+		}
+	}
 }
 
 	/*
