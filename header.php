@@ -43,33 +43,58 @@
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
 		<div id="container">
+			<div class="header-outer">
 
-			<header class="header wrap cf" role="banner" itemscope itemtype="http://schema.org/WPHeader">
+				<header class="header wrap cf" role="banner" itemscope itemtype="http://schema.org/WPHeader">
 
-				<div id="inner-header">
+					<div id="inner-header">
 
-					<div class="logo">
-						<a href="<?php echo home_url(); ?>" rel="nofollow"><img src="http://www2.rainfocus.com/wp-content/uploads/2018/02/rainfocus-logo-white@3x.png"/></a>
+						<div class="logo white">
+							<a href="<?php echo home_url(); ?>" rel="nofollow"><img src="https://www2.rainfocus.com/wp-content/uploads/2018/03/white_logo-ani.svg"/></a>
+						</div>
+
+						<div class="logo black">
+							<a href="<?php echo home_url(); ?>" rel="nofollow"><img src="https://www2.rainfocus.com/wp-content/uploads/2018/03/black_logo-ani.svg"/></a>
+						</div>
+			
+
+						<nav role="navigation" class="nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+							<?php wp_nav_menu(array(
+									'container' => false,                           // remove nav container
+									'container_class' => 'menu cf',                 // class of container (should you choose to use it)
+									'menu' => __( 'The Main Menu', 'bonestheme' ),  // nav name
+									'menu_class' => 'nav top-nav cf',               // adding custom nav class
+									'theme_location' => 'main-nav',                 // where it's located in the theme
+									'before' => '',                                 // before the menu
+									'after' => '',                                  // after the menu
+									'link_before' => '',                            // before each link
+									'link_after' => '',                             // after each link
+									'depth' => 0,                                   // limit the depth of the nav
+									'fallback_cb' => ''                             // fallback function (if there is one)
+							)); ?>
+
+						</nav>
+
 					</div>
-		
 
-					<nav role="navigation" class="nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
-						<?php wp_nav_menu(array(
-    					         'container' => false,                           // remove nav container
-    					         'container_class' => 'menu cf',                 // class of container (should you choose to use it)
-    					         'menu' => __( 'The Main Menu', 'bonestheme' ),  // nav name
-    					         'menu_class' => 'nav top-nav cf',               // adding custom nav class
-    					         'theme_location' => 'main-nav',                 // where it's located in the theme
-    					         'before' => '',                                 // before the menu
-        			               'after' => '',                                  // after the menu
-        			               'link_before' => '',                            // before each link
-        			               'link_after' => '',                             // after each link
-        			               'depth' => 0,                                   // limit the depth of the nav
-    					         'fallback_cb' => ''                             // fallback function (if there is one)
-						)); ?>
+					<div id="products-page-menu">
+						
+							<?php wp_nav_menu(array(
+									'container' => false,                           // remove nav container
+									'container_class' => 'menu cf',                 // class of container (should you choose to use it)
+									'menu' => __( 'products-sub-menu', 'bonestheme' ),  // nav name
+									'menu_class' => 'products-menu cf',               // adding custom nav class
+									'theme_location' => 'main-nav',                 // where it's located in the theme
+									'before' => '',                                 // before the menu
+									'after' => '',                                  // after the menu
+									'link_before' => '',                            // before each link
+									'link_after' => '',                             // after each link
+									'depth' => 0,                                   // limit the depth of the nav
+									'fallback_cb' => ''                             // fallback function (if there is one)
+							)); ?>
 
-					</nav>
+						
+					</div>
 
-				</div>
-
-			</header>
+				</header>
+			</div>

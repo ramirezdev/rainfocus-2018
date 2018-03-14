@@ -20,7 +20,7 @@ body {
 	font-size: 100%;
 	line-height: 1.5;
 	color: $text-color;
-	background-color: $black;
+	background-color: $white;
   	-webkit-font-smoothing: antialiased;
   	-moz-osx-font-smoothing: grayscale;
 }
@@ -175,26 +175,86 @@ h2 {
 HEADER STYLES
 *********************/
 
-.header {
+.header-outer {
 	position: absolute;
+	width: 100%;
+}
+
+.header {
+	position: relative;
     z-index: 1;
-    left: 0;
-    top: 0;
     width: 100%;
 	max-width: 1440px;
-	padding: 25px 130px;
+	padding-top: 30px;
+	#inner-header {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 0 8%;
+	}
 
 	.logo {
-		width: 116px;
-		display: inline-block;
+		// width: 20%;
+		display: none;
+		margin: -32px auto;
 		a {
 			img {
 				width: 116px;
 			}
 		}
+
+		&.white {
+			display: block;
+		}
+
+		@media only screen and (min-width: 1023px) {
+			margin-top: -26px;
+		}
 		
 	}
 	
+}
+#products-page-menu {
+	width: 100%;
+	display: none;
+	&.fixed {
+		position: fixed;
+		left: 0;
+		top: -15px;
+	}
+	#menu-products-sub-menu{
+		display: flex;
+		justify-content: center;
+		background-color: transparent;
+		-webkit-transition: background-color 1000ms linear;
+		transition: background-color 1000ms linear;
+		padding: 8px;
+		&.active {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+		li {
+			margin: 0 30px;
+			a {
+				color: $white;
+				font-family: $montserrat;
+				font-size: 13px;
+				text-decoration: none;
+				// opacity: 1;
+				// transition: opacity 1s;
+				// -webkit-transition: opacity 1s;
+				&:hover {
+					color: #51C1DB;
+					
+				}
+			}
+			&.current_page_item {
+				a { 
+					// color: #51C1DB;
+					opacity: .4;
+				}
+			}
+		}
+	}
 }
 
 
@@ -209,31 +269,59 @@ easily write one group of styles for
 the navs on the site so our css is cleaner
 and more scalable.
 */
-
+nav { flex: 1; }
+#menu-main-menu {
+	display: flex;
+    justify-content: flex-end;
+}
 .nav {
-	border-bottom: 0;
-	margin: 0;
+	// border-bottom: 0;
+	// margin: 0;
+	// width: 70%;
+	
 	li {
-		display: inline-block;
-		margin: 0 35px;
-		&:first-child, &:last-child{
-			margin-left: 150px;
+		flex-grow: .12;
+		&:last-child{
+			flex-grow: 0;
+			width: 140px;
+			padding: 10px 0;
+			text-align: center;
+			position: relative;
+			top: -10px;
+			border-radius: 1px;
+			background-image: linear-gradient(150deg, #68227e, #d7214b);
 		}
+		&:nth-child(3) {
+			flex-grow: .25;
+		}
+		// display: inline-block;
+		/*&:first-child, &:last-child{
+			margin-left: 150px;
+		}*/
 		a {
 			display: block;
 			color: $white;
 			text-decoration: none;
 			padding: 0;
 			font-size: 16px;
-			font-weight: bold;
+			font-weight: 400;
 			&:hover, &:focus {
-
+				-webkit-background-clip: text;
+				background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-image: linear-gradient(98deg, #7d3791, #e13a5d);
 			}
 		}
 
 		&:first-child {}
 
-		&:last-child {}
+		&:last-child {
+			a {
+				&:hover {
+					-webkit-text-fill-color: $white;
+				}
+			}
+		}
 
 		/*
 		so you really have to rethink your dropdowns for mobile.
@@ -272,7 +360,12 @@ and more scalable.
 	li.current_page_item,
 	li.current_page_ancestor {
 
-		a {}
+		a { 
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-image: linear-gradient(98deg, #7d3791, #e13a5d);
+		}
 
 	}  /* end current highlighters */
 
@@ -287,6 +380,86 @@ POSTS & CONTENT STYLES
 *********************/
 
 #content {
+	.about-us-menu-item {
+		color: $white !important;
+		&:hover, &.active {
+			color: $raifocus-red !important;
+		}
+	}
+	.positions-heading {
+		font-size: 36px;
+		text-align: center;
+	}
+	.pos-desc {
+		max-width: 565px;
+		margin: 30px auto;
+		text-align: center;
+		color: white;
+		font-size: 14px;
+		line-height: 2;
+	}
+	#careers-jobs-row {
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-image: url('https://www2.rainfocus.com/wp-content/uploads/2018/03/careers-bg@3x.jpg');
+		.job-col-title {
+			font-size: 18px;
+			font-weight: 500;
+			color: $white;
+			opacity: 0.3;
+		}
+		.job-separator {
+			opacity: 0.3;
+			margin: 0px 0 10px;
+		}
+		.job-title, .job-location, .job-skills {
+			font-family: gibsonlight;
+			color: $white;
+			font-size: 16px;
+			
+		}
+		.job-title {
+			font-weight: bold;
+		}
+		.job-skills {
+			font-size: 14px;
+		}
+		.job-arrow {
+			display: inline-block;
+			margin-left: 14px !important;
+		}
+
+		.cta-link {
+			font-size: 16px;
+			display: block;
+			color: $white;
+			margin: 0 auto;
+			text-decoration: none;
+		}
+	}
+	.bio {
+		padding: 0 30px;
+		h2 {
+			margin: 15px 0;
+			color: #4a4a4a;
+			.title {
+				font-weight: 600;
+				font-style: italic;
+				font-size: 14px;
+				
+			}
+		}
+		p{
+			margin: 0;
+			padding: 0;
+			font-size: 14px;
+			color: #4a4a4a;
+			font-family: gibsonlight;
+		}
+	}
+	.wpb_content_element {
+		margin-bottom: 0;
+	}
 	.about-you-slide{
 		margin-bottom: 0;
 	}
@@ -302,6 +475,15 @@ POSTS & CONTENT STYLES
 		margin: 0;
 		padding: 7px 0;
 		background-color: rgba(0, 0, 0, 0.1);
+		opacity: 0;
+		transition: opacity 1s;
+		-webkit-transition: opacity 1s;
+		&.fixed {
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			opacity: 1;
+		}
 		
 		.wpb_content_element { 
 			margin: 0 
@@ -313,10 +495,48 @@ POSTS & CONTENT STYLES
 			li {
 				display: inline-block;
 				margin: 0 32px;
-				font-size: 14px;
-				color: $white;
-				font-weight: 500;
+				a {
+					font-size: 14px;
+					color: $white;
+					font-weight: 500;
+					text-decoration: none;
+					&:hover {
+						color: $raifocus-red;
+					}
+				}
 			}
+		}
+	}
+
+	.home-page-points {
+		overflow: auto;
+		padding: 15px;
+		.icon {
+			min-height: 140px;
+			min-width: 60px;
+			display: inline-block;
+			float: left;
+			height: 140px;
+			margin-right: 8px;
+			text-align: center;
+		}
+		h3 {
+			color: $black;
+			text-align: left;
+			margin: 0;
+			padding: 0;
+			font-family: $montserrat;
+			font-size: 24px;
+			font-weight: 300;
+			line-height: 1;
+		}
+		.blurb {
+			font-family: $gibsonlight;
+			font-size: 17px;
+			font-weight: 300;
+			color: $black;
+			margin-top: 10px;
+			padding-right: 8px;
 		}
 	}
 }
@@ -791,16 +1011,38 @@ FOOTER STYLES
 	
 	#inner-footer{
 		.footer-links-wrapper {
+			padding: 30px;
 			h4{
 				font-size: 12px;
 				font-weight: bold;
 			}
 			ul{
+				
 				padding: 1px 0;
+				border-top: 1px solid;
+				border-image-source: linear-gradient(to right, #7d3791, #e13a5d);
+				border-image-slice: 2;
+				border-right: 0;
+				border-left: 0;
+				border-bottom: 0;
 				li{
 					font-size: 12px;
 					color: $disabled-gray;
 					margin: 25px 0;
+					a{
+						text-decoration: none;
+						color: #cfcfcf;
+						&:hover {
+							color: $raifocus-red;
+						}
+					}
+				}
+			}
+			@media only screen and (min-width: 1024px) {
+				padding: 0px;
+				ul {
+					
+					border: none;
 				}
 			}
 		}
@@ -841,3 +1083,172 @@ FOOTER STYLES
 
 
 	.copyright {}
+
+
+body.page-id-198, body.page-id-211{
+	.header {
+		.logo {
+			&.white {
+				display: none;
+			}
+			&.black {
+				display: block;
+			}
+		}
+		
+	}
+	#menu-main-menu {
+		li {
+			a {
+				color: $black;
+				&:hover {
+					color: $raifocus-red;
+				}
+
+			}
+			&:last-child {
+				a {
+					color: $white;
+				}
+			}
+			&.current_page_item {
+				a {
+					color: $raifocus-red;
+				}
+				
+			}
+		}
+	}
+}
+
+body.page-id-174, body.page-id-190, body.page-id-116 {
+	
+	#menu-main-menu {
+		li {
+			a {
+				&:hover {
+					color: $black;
+				}
+				
+			}
+			&:last-child {
+				border-radius: 2px;
+				border: 1px solid $white;
+				background-image: none;
+				a {
+					color: $white;
+				}
+			}
+			&.hovered {
+				border: 1px solid $black;
+			}
+			&.current_page_item {
+				a {
+					color: $black;
+				}
+				
+			}
+		}
+	}
+}
+
+body.page-id-174, body.page-id-190, body.page-id-116 {
+	#products-page-menu {
+		display: block;
+	}
+}
+.cta-link {
+	@include cta-button(180px);
+}
+.cta-link.stand-alone {
+	display: block;
+    color: $white;
+    text-decoration: none;
+    margin: 0 auto;
+}
+#menu-item-350, .cta-link, .cta-link-alt {
+	transition: all 0.05s linear !important;
+	&:hover {
+		transform: translateY(-2px);
+		color:rgba(255, 255, 255, 0.6) !important;
+	}
+
+	&.white {
+		&:hover {
+			color:rgba(255, 58, 93, 0.60) !important;
+		}
+	}
+}
+
+.tp-caption.about-you-bullet-points {
+	text-decoration: none !important;
+}
+
+.mobmenu-push-wrap {
+	padding-top:0 !important;
+}
+
+.mob-menu-logo-holder {
+	display: none;
+}
+
+.is-mobile {
+	display: none;
+	@media only screen and (max-width: 479px) {
+		display: block !important;
+	}
+}
+
+
+.is-tablet {
+	display: none;
+	@media only screen and (min-width: 480px) and  (max-width: 1023px) {
+		display: block !important;
+	}
+}
+
+.is-desktop {
+	display: none;
+	@media only screen and (min-width: 1024px) {
+		display: block !important;
+	}
+}
+
+
+@media only screen and (max-width: 1024px) {
+	.mobmenul-container i {
+		color: $white !important;
+		opacity: .6 !important;
+	}
+	
+	.mobmenul-container {
+		top: 25px !important;
+		margin-left: 20px !important;
+	}
+}
+
+
+.cta-link-alt{
+    font-family: $montserrat;
+	text-align: center !important;
+	padding: 15px 20px !important;
+    color: #FFF !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
+	text-decoration: none;
+	min-width: 165px;
+	border-radius: 2px;
+	display: inline-block;
+    background-image: linear-gradient(296deg, #68227e, #d7214b);
+}
+
+.cta-link-alt.white{
+    background: #FFF;
+}
+
+.cta-link-alt.white .colored{
+	background-image: linear-gradient(98deg, #7d3791, #e13a5d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

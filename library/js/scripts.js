@@ -109,21 +109,66 @@ function loadGravatars() {
  * Put all your regular jQuery in here.
 */
 jQuery(document).ready(function($) {
-
+  var $body = $('body');
   /*
    * Let's fire off the gravatar function
    * You can remove this if you don't need it
   */
   loadGravatars();
+  $('.about-you-sub-nav li a').click(function(e) {
+    e.preventDefault();
+  })
+
+  $('.tp-caption.about-you-bullet-points').click(function(e) {
+    e.preventDefault();
+  })
   
-  $(window).scroll(function() {
-    var top = $('.block-attendee').height();
-    $('#sub-nav-row').css('top', top + 'px');
+  $(window).on('resize scroll',function(e){
+    postitionSubMenus();
   });
 
-  setTimeout(function(){
-    $('#sub-nav-row').css('top', '1000px');
-  }, 500);
+
+
+  if ($body.hasClass('page-id-174') || $body.hasClass('page-id-190') || $body.hasClass('page-id-116')) {
+    
+      $('#menu-item-351').addClass('current_page_item');
+    
+  }
+
 
 
 }); /* end of as page load scripts */
+
+function postitionSubMenus() {
+  var $row = jQuery('#sub-nav-row');
+  var $window = jQuery(window);
+  var $productsMenu = jQuery('#products-page-menu ');
+  var $wrapper = jQuery('#menu-products-sub-menu');
+  if ($row.length) {
+    var $attendee = jQuery('.block-attendee');
+    //var $row = jQuery('#sub-nav-row');
+    var top = $attendee.height();
+    var scrolltop = jQuery(window).scrollTop();
+    var distance = jQuery('#block-cmo-anchor').offset().top;
+   
+    $row.css('top', top + 'px');
+    if ( $window.scrollTop() >= distance ) {
+      $row.addClass('fixed');
+    } else {
+      $row.removeClass('fixed');
+    }
+  }
+
+  if ($productsMenu.length) {
+    
+    var isPositionFixed = ($productsMenu.css('position') == 'fixed');
+    if (jQuery(window).scrollTop() > 117 && !isPositionFixed) { 
+      $productsMenu.addClass('fixed'); 
+      $wrapper.addClass('active'); 
+    }
+    if (jQuery(window).scrollTop() < 117 && isPositionFixed) {
+      $productsMenu.removeClass('fixed');
+      $wrapper.removeClass('active');   
+    } 
+  }
+}
