@@ -12,37 +12,43 @@
  * not required. It's your world baby, you can do whatever you want.
 */
 
-
 /*
  * Get Viewport Dimensions
  * returns object with viewport dimensions to match css in width and height properties
  * ( source: http://andylangton.co.uk/blog/development/get-viewport-size-width-and-height-javascript )
 */
 function updateViewportDimensions() {
-	var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
-	return { width:x,height:y };
+  var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName("body")[0],
+    x = w.innerWidth || e.clientWidth || g.clientWidth,
+    y = w.innerHeight || e.clientHeight || g.clientHeight;
+  return { width: x, height: y };
 }
 // setting the viewport width
 var viewport = updateViewportDimensions();
-
 
 /*
  * Throttle Resize-triggered Events
  * Wrap your actions in this function to throttle the frequency of firing them off, for better performance, esp. on mobile.
  * ( source: http://stackoverflow.com/questions/2854407/javascript-jquery-window-resize-how-to-fire-after-the-resize-is-completed )
 */
-var waitForFinalEvent = (function () {
-	var timers = {};
-	return function (callback, ms, uniqueId) {
-		if (!uniqueId) { uniqueId = "Don't call this twice without a uniqueId"; }
-		if (timers[uniqueId]) { clearTimeout (timers[uniqueId]); }
-		timers[uniqueId] = setTimeout(callback, ms);
-	};
+var waitForFinalEvent = (function() {
+  var timers = {};
+  return function(callback, ms, uniqueId) {
+    if (!uniqueId) {
+      uniqueId = "Don't call this twice without a uniqueId";
+    }
+    if (timers[uniqueId]) {
+      clearTimeout(timers[uniqueId]);
+    }
+    timers[uniqueId] = setTimeout(callback, ms);
+  };
 })();
 
 // how long to wait before deciding the resize has stopped, in ms. Around 50-100 should work ok.
 var timeToWaitForLast = 100;
-
 
 /*
  * Here's an example so you can see how we're using the above function
@@ -98,77 +104,113 @@ function loadGravatars() {
   viewport = updateViewportDimensions();
   // if the viewport is tablet or larger, we load in the gravatars
   if (viewport.width >= 768) {
-  jQuery('.comment img[data-gravatar]').each(function(){
-    jQuery(this).attr('src',jQuery(this).attr('data-gravatar'));
-  });
-	}
+    jQuery(".comment img[data-gravatar]").each(function() {
+      jQuery(this).attr("src", jQuery(this).attr("data-gravatar"));
+    });
+  }
 } // end function
-
 
 /*
  * Put all your regular jQuery in here.
 */
 jQuery(document).ready(function($) {
-  var $body = $('body');
+  // if (!$(".related-post").length) {
+  //   $("#related-posts-container").hide();
+  // }
+
+  $(".cat-item-190 a").attr("href", "blog/#event-management");
+  $(".cat-item-191 a").attr("href", "blog/#marketing");
+  $(".cat-item-192 a").attr("href", "blog/#event-roi");
+  $(".cat-item-194 a").attr("href", "blog/#product");
+  $(".cat-item-193 a").attr("href", "blog/#tech-news");
+
+  $(".cat-item-190").addClass("event-management");
+  $(".cat-item-191").addClass("marketing");
+  $(".cat-item-192").addClass("event-roi");
+  $(".cat-item-194").addClass("product");
+  $(".cat-item-193").addClass("tech-news");
+
+  $(".mixed-post").hover(function() {
+    $(this).toggleClass("active");
+  });
+
+  $(".mixed-post").click(function() {
+    window.location.href = $(this).attr("data-link");
+  });
+
+  $(".single-cat-post").hover(function() {
+    $(this).toggleClass("active");
+  });
+
+  $(".single-cat-post").click(function() {
+    window.location.href = $(this).attr("data-link");
+  });
+
+  $(".rel-post-img-time").hover(function() {
+    $(this).toggleClass("active");
+  });
+
+  $(".rel-post-img-time").click(function() {
+    window.location.href = $(this).attr("data-link");
+  });
+
+  var $body = $("body");
+  $("#umiwebchat-container").appendTo($body);
   /*
    * Let's fire off the gravatar function
    * You can remove this if you don't need it
   */
   loadGravatars();
-  $('.about-you-sub-nav li a').click(function(e) {
+  $(".about-you-sub-nav li a").click(function(e) {
     e.preventDefault();
-  })
+  });
 
-  $('.tp-caption.about-you-bullet-points').click(function(e) {
+  $(".tp-caption.about-you-bullet-points").click(function(e) {
     e.preventDefault();
-  })
-  
-  $(window).on('resize scroll',function(e){
+  });
+
+  $(window).on("resize scroll", function(e) {
     postitionSubMenus();
   });
 
-
-
-  if ($body.hasClass('page-id-174') || $body.hasClass('page-id-190') || $body.hasClass('page-id-116')) {
-    
-      $('#menu-item-351').addClass('current_page_item');
-    
+  if (
+    $body.hasClass("page-id-174") ||
+    $body.hasClass("page-id-190") ||
+    $body.hasClass("page-id-116")
+  ) {
+    $("#menu-item-351").addClass("current_page_item");
   }
-
-
-
 }); /* end of as page load scripts */
 
 function postitionSubMenus() {
-  var $row = jQuery('#sub-nav-row');
+  var $row = jQuery("#sub-nav-row");
   var $window = jQuery(window);
-  var $productsMenu = jQuery('#products-page-menu ');
-  var $wrapper = jQuery('#menu-products-sub-menu');
+  var $productsMenu = jQuery("#products-page-menu ");
+  var $wrapper = jQuery("#menu-products-sub-menu");
   if ($row.length) {
-    var $attendee = jQuery('.block-attendee');
+    var $attendee = jQuery(".block-attendee");
     //var $row = jQuery('#sub-nav-row');
     var top = $attendee.height();
     var scrolltop = jQuery(window).scrollTop();
-    var distance = jQuery('#block-cmo-anchor').offset().top;
-   
-    $row.css('top', top + 'px');
-    if ( $window.scrollTop() >= distance ) {
-      $row.addClass('fixed');
+    var distance = jQuery("#block-cmo-anchor").offset().top;
+
+    $row.css("top", top + "px");
+    if ($window.scrollTop() >= distance) {
+      $row.addClass("fixed");
     } else {
-      $row.removeClass('fixed');
+      $row.removeClass("fixed");
     }
   }
 
   if ($productsMenu.length) {
-    
-    var isPositionFixed = ($productsMenu.css('position') == 'fixed');
-    if (jQuery(window).scrollTop() > 117 && !isPositionFixed) { 
-      $productsMenu.addClass('fixed'); 
-      $wrapper.addClass('active'); 
+    var isPositionFixed = $productsMenu.css("position") == "fixed";
+    if (jQuery(window).scrollTop() > 117 && !isPositionFixed) {
+      $productsMenu.addClass("fixed");
+      $wrapper.addClass("active");
     }
     if (jQuery(window).scrollTop() < 117 && isPositionFixed) {
-      $productsMenu.removeClass('fixed');
-      $wrapper.removeClass('active');   
-    } 
+      $productsMenu.removeClass("fixed");
+      $wrapper.removeClass("active");
+    }
   }
 }

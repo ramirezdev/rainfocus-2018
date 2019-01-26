@@ -18,6 +18,14 @@
 		<meta name="MobileOptimized" content="320">
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+		<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5R98CS6');</script>
+<!-- End Google Tag Manager -->
+
 		<?php // icons & favicons (for more: http://www.jonathantneal.com/blog/understand-the-favicon/) ?>
 		<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/library/images/apple-touch-icon.png">
 		<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/favicon.png">
@@ -30,7 +38,8 @@
             <meta name="theme-color" content="#121212">
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-
+		<script>var LandbotLiveConfig = { index: 'https://landbot.io/u/H-52974-KKE7W5LMNMVGIE12/index.html', accent: '#68227e' };</script>
+<script src="https://static.helloumi.com/umiwebchat/umiwebchat.js?v=1529107422433" defer></script>
 		<?php // wordpress head functions ?>
 		<?php wp_head(); ?>
 		<?php // end of wordpress head ?>
@@ -41,7 +50,10 @@
 	</head>
 
 	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
-
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5R98CS6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 		<div id="container">
 			<div class="header-outer">
 
@@ -50,11 +62,11 @@
 					<div id="inner-header">
 
 						<div class="logo white">
-							<a href="<?php echo home_url(); ?>" rel="nofollow"><img src="https://www2.rainfocus.com/wp-content/uploads/2018/03/white_logo-ani.svg"/></a>
+							<a href="<?php echo home_url(); ?>" rel="nofollow"><img src="https://www.rainfocus.com/wp-content/uploads/2018/03/white_logo-ani.svg"/></a>
 						</div>
 
 						<div class="logo black">
-							<a href="<?php echo home_url(); ?>" rel="nofollow"><img src="https://www2.rainfocus.com/wp-content/uploads/2018/03/black_logo-ani.svg"/></a>
+							<a href="<?php echo home_url(); ?>" rel="nofollow"><img src="https://www.rainfocus.com/wp-content/uploads/2018/03/black_logo-ani.svg"/></a>
 						</div>
 			
 

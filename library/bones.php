@@ -125,7 +125,7 @@ function bones_scripts_and_styles() {
   if (!is_admin()) {
 
 		// google fonts
-		wp_register_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Montserrat:400,700', array(), '', 'all' );
+		wp_register_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Montserrat:300,400,700', array(), '', 'all' );
 
 		// modernizr (without media query polyfill)
 		wp_register_script( 'bones-modernizr', get_stylesheet_directory_uri() . '/library/js/libs/modernizr.custom.min.js', array(), '2.5.3', false );
@@ -142,9 +142,11 @@ function bones_scripts_and_styles() {
     }
 
 		//adding scripts file in the footer
+		wp_register_script( 'jobs', 'https://hire.withgoogle.com/s/embed/hire-jobs.js?company=rainfocuscom', '', true );
 		wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
 
 		// enqueue styles and scripts
+		wp_enqueue_script( 'jobs' );
 		wp_enqueue_script( 'bones-modernizr' );
 		wp_enqueue_style( 'google-fonts' );
 		wp_enqueue_style( 'bones-stylesheet' );

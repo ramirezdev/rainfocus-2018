@@ -50,9 +50,9 @@ here or just use this to establish your typographical grid. Or not.
 Do whatever you want to...GOSH!
 
 Helpful Articles:
-http://trentwalton.com/2012/06/19/fluid-type/
-http://ia.net/blog/responsive-typography-the-basics/
-http://alistapart.com/column/responsive-typography-is-a-physical-discipline
+https://trentwalton.com/2012/06/19/fluid-type/
+https://ia.net/blog/responsive-typography-the-basics/
+https://alistapart.com/column/responsive-typography-is-a-physical-discipline
 
 ******************************************************************/
 /*********************
@@ -62,7 +62,7 @@ FONT FACE (IN YOUR FACE)
   and place your fonts inside the
   library/fonts folder. For more information
   on embedding fonts, go to:
-  http://www.fontsquirrel.com/
+  https://www.fontsquirrel.com/
   Be sure to remove the comment brackets.
 */
 /*  @font-face {
@@ -77,16 +77,16 @@ FONT FACE (IN YOUR FACE)
   }
 */
 @font-face {
-  font-family: 'gibsonbold';
-  src: url("http://www2.rainfocus.com/wp-content/themes/Rainfocus-2018/library/fonts/Gibson-Bold-webfont.eot");
-  src: url("http://www2.rainfocus.com/wp-content/themes/Rainfocus-2018/library/fonts/Gibson-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("http://www2.rainfocus.com/wp-content/themes/Rainfocus-2018/library/fonts/Gibson-Bold-webfont.woff") format("woff"), url("http://www2.rainfocus.com/wp-content/themes/Rainfocus-2018/library/fonts/Gibson-Bold-webfont.ttf") format("truetype"), url("http://www2.rainfocus.com/wp-content/themes/Rainfocus-2018/library/fonts/Gibson-Bold-webfont.svg#gibsonbold") format("svg");
+  font-family: "gibsonbold";
+  src: url("../fonts/Gibson-Bold-webfont.eot");
+  src: url("../fonts/Gibson-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Gibson-Bold-webfont.woff") format("woff"), url("../fonts/Gibson-Bold-webfont.ttf") format("truetype"), url("../fonts/Gibson-Bold-webfont.svg#gibsonbold") format("svg");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
-  font-family: 'gibsonlight';
-  src: url("https://www2.rainfocus.com/wp-content/themes/Rainfocus-2018/library/fonts/Gibson-Light-webfont.eot");
-  src: url("https://www2.rainfocus.com/wp-content/themes/Rainfocus-2018/library/fonts/Gibson-Light-webfont.eot?#iefix") format("embedded-opentype"), url("https://www2.rainfocus.com/wp-content/themes/Rainfocus-2018/library/fonts/Gibson-Light-webfont.woff") format("woff"), url("https://www2.rainfocus.com/wp-content/themes/Rainfocus-2018/library/fonts/Gibson-Light-webfont.ttf") format("truetype"), url("https://www2.rainfocus.com/wp-content/themes/Rainfocus-2018/library/fonts/Gibson-Light-webfont.svg#gibsonlight") format("svg");
+  font-family: "gibsonlight";
+  src: url("../fonts/Gibson-Light-webfont.eot");
+  src: url("../fonts/Gibson-Light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Gibson-Light-webfont.woff") format("woff"), url("../fonts/Gibson-Light-webfont.ttf") format("truetype"), url("../fonts/Gibson-Light-webfont.svg#gibsonlight") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -101,9 +101,9 @@ I've edited it a bit, but it's a nice starting point.
 */
 /*
 some nice typographical defaults
-more here: http://www.newnet-soft.com/blog/csstypography
+more here: https://www.newnet-soft.com/blog/csstypography
 */
-/* line 90, ../scss/partials/_typography.scss */
+/* line 89, ../scss/partials/_typography.scss */
 p {
   -ms-word-wrap: break-word;
   word-break: break-word;

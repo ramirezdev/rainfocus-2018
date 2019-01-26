@@ -1,72 +1,147 @@
 
-              <?php
-                /*
-                 * This is the default post format.
-                 *
-                 * So basically this is a regular post. if you don't want to use post formats,
-                 * you can just copy ths stuff in here and replace the post format thing in
-                 * single.php.
-                 *
-                 * The other formats are SUPER basic so you can style them as you like.
-                 *
-                 * Again, If you want to remove post formats, just delete the post-formats
-                 * folder and replace the function below with the contents of the "format.php" file.
-                */
-              ?>
 
               <article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
 
                 <header class="article-header entry-header">
-
-                  <h1 class="entry-title single-title" itemprop="headline" rel="bookmark"><?php the_title(); ?></h1>
-
-                  <p class="byline entry-meta vcard">
-
-                    <?php printf( __( 'Posted', 'bonestheme' ).' %1$s %2$s',
-                       /* the time the post was published */
-                       '<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
-                       /* the author of the post */
-                       '<span class="by">'.__( 'by', 'bonestheme' ).'</span> <span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . get_the_author_link( get_the_author_meta( 'ID' ) ) . '</span>'
-                    ); ?>
-
-                  </p>
-
-                </header> <?php // end article header ?>
-
-                <section class="entry-content cf" itemprop="articleBody">
-                  <?php
-                    // the content (pretty self explanatory huh)
-                    the_content();
-
-                    /*
-                     * Link Pages is used in case you have posts that are set to break into
-                     * multiple pages. You can remove this if you don't plan on doing that.
-                     *
-                     * Also, breaking content up into multiple pages is a horrible experience,
-                     * so don't do it. While there are SOME edge cases where this is useful, it's
-                     * mostly used for people to get more ad views. It's up to you but if you want
-                     * to do it, you're wrong and I hate you. (Ok, I still love you but just not as much)
-                     *
-                     * http://gizmodo.com/5841121/google-wants-to-help-you-avoid-stupid-annoying-multiple-page-articles
-                     *
-                    */
-                    wp_link_pages( array(
-                      'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'bonestheme' ) . '</span>',
-                      'after'       => '</div>',
-                      'link_before' => '<span>',
-                      'link_after'  => '</span>',
-                    ) );
+                  <?php if ( has_post_thumbnail() ):?>
+                    <div class="featured-image-wrap"><?php the_post_thumbnail('full'); ?></div>
+                  <?php endif; ?>
+                  <?php 
+                    $categoryArray = get_the_category($id);
+                    $firstCategory = $categoryArray[0]->cat_name;
+                    $catNameString = '';
+                    switch ($firstCategory) {
+                      case 'Technology & News':
+                          $catNameString = 'tech-news';
+                          break;
+                      case 'Product':
+                          $catNameString = 'product';
+                          break;
+                      case 'Marketing':
+                          $catNameString = 'marketing';
+                          break;
+                      case 'Event Management':
+                          $catNameString = 'event-management';
+                          break;
+                      case 'Event ROI':
+                          $catNameString = 'event-roi';
+                          break;
+                      default:
+                          $catNameString = 'tech-news';
+                    }
                   ?>
+                  <div class="category"><?php the_category(); ?></div>
+                  <h1 class="entry-title single-title" itemprop="headline" rel="bookmark"><?php the_title(); ?></h1>
+                  <div class="reading-time">
+                    <?php 
+                      global $readingTimeWP;
+                      $id = get_the_ID();
+                      $reading_time = $readingTimeWP->rt_calculate_reading_time($id, get_option('rt_reading_time_options') ); 
+                    ?>
+                    <span class="clock"></span> <span class="minutes"><?php echo $reading_time; ?> MINS</span>
+                  </div>
+                </header>
+                <div class="divider-bar <?php echo $catNameString; ?>"></div>
+                <section class="entry-content cf" itemprop="articleBody">
+                  
+                  <div class="content-wrapper m-all t-3of3 d-3of4">
+                    <?php the_content(); ?>
+                  </div>
+                  <div class="sidebar-wrapper d-1of4">
+                    <?php get_sidebar(); ?>
+                  </div>
                 </section> <?php // end article section ?>
 
-                <footer class="article-footer">
+                <footer class="article-footer m-all t-3of3 d-3of4">
+                  
+                  <div class="post-meta">
+                    <?php $post_date = get_the_date( 'l F j, Y' ); ?>
+                    <div class="post-date"><?php echo $post_date; ?></div> <span>|</span> 
+                    <div><span>Categories:</span> <?php echo get_the_category_list(', '); ?></div> <span>|</span> 
+                    <?php the_tags( '<div class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</div>' ); ?>
+                  </div>
+                  
+                  <div class="share-wrapper"><?php echo do_shortcode("[addtoany]"); ?></div>
 
-                  <?php printf( __( 'filed under', 'bonestheme' ).': %1$s', get_the_category_list(', ') ); ?>
-
-                  <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
+                  <hr/>
 
                 </footer> <?php // end article footer ?>
 
-                <?php //comments_template(); ?>
-
               </article> <?php // end article ?>
+
+              <?php
+                global $readingTimeWP;
+              ?>
+
+              <?php
+                      $post_objects = get_field('related_post_object');
+                      if( $post_objects ): ?>
+
+              <div id="related-posts-container" class="m-all t-3of3 d-3of4">
+                <h2>Related posts</h2>
+                <div class="related-posts-wrapper">
+
+                          <?php foreach( $post_objects as $post): // variable must be called $post (IMPORTANT) ?>
+                              <?php setup_postdata($post); ?>
+                              <?php 
+
+                              // $id = $field['value'];
+                              $id = get_the_ID();
+                              $title = get_the_title($id);
+                              $categoryArray = get_the_category($id);
+                              $firstCategory = $categoryArray[0]->cat_name;
+                              $catNameString = '';
+                              $date = get_the_date( 'l F j, Y', $id );
+                              $link = get_permalink($id);
+                              $post_thumbnail_id = get_post_thumbnail_id($id);
+                              $post_thumbnail_url = wp_get_attachment_url( $post_thumbnail_id );
+                              switch ($firstCategory) {
+                              case 'Technology & News':
+                                  $catNameString = 'tech-news';
+                                  break;
+                              case 'Product':
+                                  $catNameString = 'product';
+                                  break;
+                              case 'Marketing':
+                                  $catNameString = 'marketing';
+                                  break;
+                              case 'Event Management':
+                                  $catNameString = 'event-management';
+                                  break;
+                              case 'Event ROI':
+                                  $catNameString = 'event-roi';
+                                  break;
+                              default:
+                                  $catNameString = 'tech-news';
+                            }
+                              $reading_time = $readingTimeWP->rt_calculate_reading_time($id, get_option('rt_reading_time_options') );
+                              
+                    ?>
+                              <div class="related-post m-all t-1of3 d-1of3"><!-- START RELATED -->
+                                <div class="rel-post-img-time <?php echo $catNameString; ?>" data-link="<?php echo $link; ?>">
+                                  <div class="cover-all"></div>
+                                  <div class="related-post-featured-img" style="background-image: url('<?php echo $post_thumbnail_url; ?>');"></div>
+                                  <div class="info">
+                                    <span class="clock"></span>
+                                    <div class="cat-time">
+                                      <span><?php echo $firstCategory; ?></span>
+                                      <span><?php echo $reading_time; ?> MINS</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="title">
+                                  <h3><a href="<?php echo $link; ?>"><?php echo $title; ?></a></h3>
+                                </div>
+                                <div class="date" style="color: black;">
+                                  <?php echo $date; ?>
+                                </div>
+                                
+                              </div><!-- END RELATED -->
+                              
+                          <?php endforeach; ?>
+                          <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+                      <?php endif;
+                    ?>
+
+                </div>
+              </div>

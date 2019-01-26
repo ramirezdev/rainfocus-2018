@@ -64,6 +64,7 @@ function bones_ahoy() {
 add_action( 'after_setup_theme', 'bones_ahoy' );
 
 
+
 /************* OEMBED SIZE OPTIONS *************/
 
 if ( ! isset( $content_width ) ) {
@@ -104,6 +105,18 @@ function bones_custom_image_sizes( $sizes ) {
         'bones-thumb-300' => __('300px by 100px'),
     ) );
 }
+
+
+add_filter( 'script_loader_tag', 'add_id_to_script', 10, 3 );
+
+function add_id_to_script( $tag, $handle, $src ) {
+    if ( 'https://hire.withgoogle.com/s/embed/hire-jobs.js?company=rainfocuscom' === $src ) {
+        $tag = '<script type="text/javascript" asyn defer src="' . $src . '" id="hire-embed-loader"></script>';
+    }
+
+    return $tag;
+}
+
 
 /*
 The function above adds the ability to use the dropdown menu to select
@@ -230,7 +243,6 @@ function bones_comments( $comment, $args, $depth ) {
 <?php
 } // don't remove this bracket!
 
-
 /*
 This is a modification of a function found in the
 twentythirteen theme where we can declare some
@@ -243,5 +255,34 @@ function bones_fonts() {
 }
 
 add_action('wp_enqueue_scripts', 'bones_fonts');
+
+function readtimefunc() {
+	global $readingTimeWP;
+  $reading_time = $readingTimeWP->rt_calculate_reading_time(4130, get_option('rt_reading_time_options') );
+  // return $reading_time;
+  return 'HELLO';
+}
+add_shortcode( 'readtimeshort', 'readtimefunc' );
+
+add_filter( 'the_content', 'add_related_posts_after_post_content' );
+function add_related_posts_after_post_content( $content ) {
+ 
+    //check if it's a single post page.
+    if ( is_single() ) {
+ 
+        // check if we're inside the main loop
+        if ( in_the_loop() && is_main_query() ) {
+ 
+            // add your own attributes here (between the brackets [ ... ])
+            $shortcode = '[related_posts_by_tax posts_per_page="3"]';
+ 
+            // add the shortcode after the content
+            $content = $content . $shortcode;
+        }
+    }
+ 
+    return $content;
+}
+
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>
